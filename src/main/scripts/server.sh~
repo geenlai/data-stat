@@ -1,0 +1,81 @@
+#! /bin/sh
+JAR_NAME=template-service
+#启动方法
+start(){
+  pro_count=`ps -ef | grep $JAR_NAME | grep -v grep | wc -l`
+  if [ $pro_count -lt 1 ]
+  then
+    bin=`pwd`
+    cd ..
+    APP_HOME=`pwd`
+    if [ ! -d logs ]; then
+      mkdir logs
+      echo "mkdir:logs"
+    fi
+    nohup java -Xms128m -Xmx512m -jar $APP_HOME/lib/$JAR_NAME.jar>/dev/null 2>$APP_HOME/logs/err.log &
+    echo "$JAR_NAME start"
+  else
+    echo "$JAR_NAME already start."
+  fi
+}
+test(){
+  pro_count=`ps -ef | grep $JAR_NAME | grep -v grep | wc -l`
+  if [ $pro_count -lt 1 ]
+  then
+    bin=`pwd`
+    cd ..
+    APP_HOME=`pwd`
+    if [ ! -d logs ]; then
+      mkdir logs
+      echo "mkdir:logs"
+    fi
+    nohup java -Xms128m -Xmx512m -jar $APP_HOME/lib/$JAR_NAME.jar>>$APP_HOME/logs/1.log 2>$APP_HOME/logs/err.log &
+    echo "$JAR_NAME start,please check 1.log"
+  else
+    echo "$JAR_NAME already start."
+  fi
+}
+#停止方法
+stop(){
+  ps -ef | grep $JAR_NAME | grep -v "grep" |awk '{print $2}'| while read pid
+  do
+    echo "$JAR_NAME, pid:$pid, stop."
+    kill -9 $pid
+  done
+} 
+#查看状态
+status(){
+  pro_count=`ps -ef | grep $JAR_NAME | grep -v grep | wc -l`
+  if [ $pro_count -lt 1 ]
+  then
+    echo "$JAR_NAME stop."
+  else
+    echo "$JAR_NAME running."
+  fi
+}
+case "$1" in
+start)
+  start
+  ;;
+
+test)
+  test
+  ;;
+
+stop)
+  stop
+  ;;
+
+status)
+  status
+  ;;
+
+restart)
+  stop
+  start
+  ;;
+*)
+  printf 'Usage: %s {start|stop|status|restart}\n' "$prog"
+  exit 1
+  ;;
+esac

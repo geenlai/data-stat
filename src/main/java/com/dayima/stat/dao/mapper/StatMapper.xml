@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dayima.stat.dao.StatMapper" >
+  <select id="getTm" resultType="Map" parameterType="String" >
+    SELECT DATE_ADD(date_format(now(),'%Y-%m-%d'), INTERVAL -1 DAY) date,
+       g.goods_id goodsId,
+       g.product_name productName,
+       g.goods_price goodsPrice,
+       SUM(g.count) count,
+       COUNT(DISTINCT MID) midCount,
+       CONCAT(fir.category_name, '/', sen.category_name, '/', third.category_name) AS 'categoryName'
+ 	 FROM(
+	SELECT a.mid, b.order_id, b.goods_id AS goods_id, b.product_name AS product_name, b.goods_price AS goods_price, b.count AS 'count'
+	  FROM orders a, order_product b
+	 WHERE a.order_id= b.order_id
+	   AND a.create_time>= #{date}
+	   AND a.create_time &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
+	   AND a.source_id= 0
+	   AND a.order_type= 1
+	   AND a.status= 4
+	   AND INSTR('SW/XS/JB/MY', a.ufrom) &lt;= 0
+	 GROUP BY b.order_id, b.goods_id, b.goods_price) g, mall_goods_info a, base_brand b, mall_goods_category c, base_category third, base_category sen, base_category fir
+	 WHERE a.brand_id= b.brand_id
+	   AND a.goods_id= c .goods_id
+	   AND a.status= 1
+	   AND c.category_id= third.category_id
+	   AND third.parent_category_id= sen.category_id
+	   AND sen.parent_category_id= fir.category_id
+	   AND third.grade_id= 3
+	   AND g.goods_id= a.goods_id
+	 GROUP BY g.goods_id, g.goods_price
+  </select>
+  
+  <select id="getMis" resultType="Map" parameterType="String" >
+    SELECT #{date} date,
+       g.goods_id goodsId,
+       g.product_name productName,
+       g.goods_price goodsPrice,
+       g.miss_period missPeriod,
+       SUM(g.count) count,
+       COUNT(DISTINCT MID) midCount,
+       CONCAT(fir.category_name, '/', sen.category_name, '/', third.category_name) AS 'categoryName'
+  	FROM(
+	SELECT a.mid, b.order_id, b.goods_id AS goods_id, b.product_name AS product_name, b.goods_price AS goods_price, a.miss_period, b.count AS 'count'
+	  FROM orders a, order_product b
+	 WHERE a.order_id= b.order_id
+	   AND a.create_time>= #{date}
+	   AND a.create_time &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
+	   AND a.source_id= 0
+	   AND a.order_type= 2
+	   AND a.status= 4
+	   AND INSTR('SW/XS/JB/MY', a.ufrom)&lt;= 0
+	 GROUP BY b.order_id, b.goods_id, b.goods_price) g, mall_goods_info a, base_brand b, mall_goods_category c, base_category third, base_category sen, base_category fir
+	 WHERE a.brand_id= b.brand_id
+	   AND a.goods_id= c .goods_id
+	   AND a.status= 1
+	   AND c.category_id= third.category_id
+	   AND third.parent_category_id= sen.category_id
+	   AND sen.parent_category_id= fir.category_id
+	   AND third.grade_id= 3
+	   AND g.goods_id= a.goods_id
+	 GROUP BY g.goods_id, g.goods_price, g.miss_period
+  </select>
+  
+</mapper>
