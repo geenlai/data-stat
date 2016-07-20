@@ -12,7 +12,7 @@ public interface StatMapper {
 	 * @param map
 	 * @return
 	 */
-	List<Map<String, Object>> getTm (@Param("date")String date);
+	List<Map<String, Object>> getTm (@Param("date")String date, @Param("orderType")byte ordertype);
 	
 	/**
 	 * 查询周期购信息

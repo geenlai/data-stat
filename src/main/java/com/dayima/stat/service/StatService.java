@@ -11,7 +11,7 @@ public interface StatService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<Map<String, Object>> getTm(String date) throws Exception;
+	List<Map<String, Object>> getTm(String date, byte orderType) throws Exception;
 	
 	/**
 	 * 查询周期购信息
@@ -20,4 +20,13 @@ public interface StatService {
 	 * @throws Exception
 	 */
 	List<Map<String, Object>> getMis(String date) throws Exception;
+	
+	/**
+	 * 查询限时购
+	 * @param date
+	 * @return
+	 * @throws Exception
+	 */
+	List<Map<String, Object>> getFlashSale(String date, byte orderType) throws Exception;
+	
 }

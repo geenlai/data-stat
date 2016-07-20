@@ -16,7 +16,7 @@
 	   AND a.create_time>= #{date}
 	   AND a.create_time &lt; DATE_ADD(#{date}, INTERVAL 1 DAY)
 	   AND a.source_id= 0
-	   AND a.order_type= 1
+	   AND a.order_type= #{orderType}
 	   AND a.status= 4
 	   AND INSTR('SW/XS/JB/MY', a.ufrom) &lt;= 0
 	 GROUP BY b.order_id, b.goods_id, b.goods_price) g, mall_goods_info a, base_brand b, mall_goods_category c, base_category third, base_category sen, base_category fir

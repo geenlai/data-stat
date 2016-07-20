@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dayima.datacut.dao.MallCouponRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.dayima.datacut.model.MallCouponRule" >
+    <id column="coupon_rule_id" property="couponRuleId" jdbcType="INTEGER" />
+    <result column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="TINYINT" />
+    <result column="coupon_title" property="couponTitle" jdbcType="VARCHAR" />
+    <result column="fee_limit" property="feeLimit" jdbcType="DECIMAL" />
+    <result column="coupon_price" property="couponPrice" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="coupon_scope" property="couponScope" jdbcType="TINYINT" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
+    <result column="exch_start_time" property="exchStartTime" jdbcType="BIGINT" />
+    <result column="exch_end_time" property="exchEndTime" jdbcType="BIGINT" />
+    <result column="time_type" property="timeType" jdbcType="TINYINT" />
+    <result column="valid_time" property="validTime" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="modify_time" property="modifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_rule_id, coupon_id, coupon_type, coupon_title, fee_limit, coupon_price, status, 
+    coupon_scope, category_id, brand_id, topic_id, exch_start_time, exch_end_time, time_type, 
+    valid_time, start_time, end_time, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_coupon_rule
+    where coupon_rule_id = #{couponRuleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mall_coupon_rule
+    where coupon_rule_id = #{couponRuleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dayima.datacut.model.MallCouponRule" >
+    insert into mall_coupon_rule (coupon_rule_id, coupon_id, coupon_type, 
+      coupon_title, fee_limit, coupon_price, 
+      status, coupon_scope, category_id, 
+      brand_id, topic_id, exch_start_time, 
+      exch_end_time, time_type, valid_time, 
+      start_time, end_time, create_time, 
+      modify_time)
+    values (#{couponRuleId,jdbcType=INTEGER}, #{couponId,jdbcType=INTEGER}, #{couponType,jdbcType=TINYINT}, 
+      #{couponTitle,jdbcType=VARCHAR}, #{feeLimit,jdbcType=DECIMAL}, #{couponPrice,jdbcType=DECIMAL}, 
+      #{status,jdbcType=TINYINT}, #{couponScope,jdbcType=TINYINT}, #{categoryId,jdbcType=INTEGER}, 
+      #{brandId,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{exchStartTime,jdbcType=BIGINT}, 
+      #{exchEndTime,jdbcType=BIGINT}, #{timeType,jdbcType=TINYINT}, #{validTime,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, 
+      #{modifyTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertBatch" parameterType="list" >
+    insert into mall_coupon_rule (coupon_rule_id, coupon_id, coupon_type, 
+      coupon_title, fee_limit, coupon_price, 
+      status, coupon_scope, category_id, 
+      brand_id, topic_id, exch_start_time, 
+      exch_end_time, time_type, valid_time, 
+      start_time, end_time, create_time, 
+      modify_time)
+    values 
+    <foreach collection="ruleList" item="rule" separator=",">
+    (#{rule.couponRuleId,jdbcType=INTEGER}, #{rule.couponId,jdbcType=INTEGER}, #{rule.couponType,jdbcType=TINYINT}, 
+      #{rule.couponTitle,jdbcType=VARCHAR}, #{rule.feeLimit,jdbcType=DECIMAL}, #{rule.couponPrice,jdbcType=DECIMAL}, 
+      #{rule.status,jdbcType=TINYINT}, #{rule.couponScope,jdbcType=TINYINT}, #{rule.categoryId,jdbcType=INTEGER}, 
+      #{rule.brandId,jdbcType=INTEGER}, #{rule.topicId,jdbcType=INTEGER}, #{rule.exchStartTime,jdbcType=BIGINT}, 
+      #{rule.exchEndTime,jdbcType=BIGINT}, #{rule.timeType,jdbcType=TINYINT}, #{rule.validTime,jdbcType=INTEGER}, 
+      #{rule.startTime,jdbcType=BIGINT}, #{rule.endTime,jdbcType=BIGINT}, #{rule.createTime,jdbcType=BIGINT}, 
+      #{rule.modifyTime,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.dayima.datacut.model.MallCouponRule" >
+    insert into mall_coupon_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponRuleId != null" >
+        coupon_rule_id,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="couponTitle != null" >
+        coupon_title,
+      </if>
+      <if test="feeLimit != null" >
+        fee_limit,
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="couponScope != null" >
+        coupon_scope,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="exchStartTime != null" >
+        exch_start_time,
+      </if>
+      <if test="exchEndTime != null" >
+        exch_end_time,
+      </if>
+      <if test="timeType != null" >
+        time_type,
+      </if>
+      <if test="validTime != null" >
+        valid_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponRuleId != null" >
+        #{couponRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=TINYINT},
+      </if>
+      <if test="couponTitle != null" >
+        #{couponTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feeLimit != null" >
+        #{feeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null" >
+        #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="couponScope != null" >
+        #{couponScope,jdbcType=TINYINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="exchStartTime != null" >
+        #{exchStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="exchEndTime != null" >
+        #{exchEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="timeType != null" >
+        #{timeType,jdbcType=TINYINT},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dayima.datacut.model.MallCouponRule" >
+    update mall_coupon_rule
+    <set >
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=TINYINT},
+      </if>
+      <if test="couponTitle != null" >
+        coupon_title = #{couponTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="feeLimit != null" >
+        fee_limit = #{feeLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="couponPrice != null" >
+        coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="couponScope != null" >
+        coupon_scope = #{couponScope,jdbcType=TINYINT},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="exchStartTime != null" >
+        exch_start_time = #{exchStartTime,jdbcType=BIGINT},
+      </if>
+      <if test="exchEndTime != null" >
+        exch_end_time = #{exchEndTime,jdbcType=BIGINT},
+      </if>
+      <if test="timeType != null" >
+        time_type = #{timeType,jdbcType=TINYINT},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where coupon_rule_id = #{couponRuleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dayima.datacut.model.MallCouponRule" >
+    update mall_coupon_rule
+    set coupon_id = #{couponId,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=TINYINT},
+      coupon_title = #{couponTitle,jdbcType=VARCHAR},
+      fee_limit = #{feeLimit,jdbcType=DECIMAL},
+      coupon_price = #{couponPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=TINYINT},
+      coupon_scope = #{couponScope,jdbcType=TINYINT},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=INTEGER},
+      exch_start_time = #{exchStartTime,jdbcType=BIGINT},
+      exch_end_time = #{exchEndTime,jdbcType=BIGINT},
+      time_type = #{timeType,jdbcType=TINYINT},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=BIGINT}
+    where coupon_rule_id = #{couponRuleId,jdbcType=INTEGER}
+  </update>
+  
+   <update id="updateAll" parameterType="com.dayima.datacut.model.MallCouponRule" >
+    update mall_coupon_rule
+    set valid_time = valid_time * 86400
+  </update>
+</mapper>

@@ -27,7 +27,7 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<!-- 开启注解配置 -->  
     <context:annotation-config />
-	<context:component-scan base-package="com.dayima.stat.service"/>
+	<context:component-scan base-package="com.dayima.stat.service,com.dayima.datacut.service"/>
 	<!-- master -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
@@ -43,9 +43,9 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 它表示我们的Mapper文件存放的位置，当我们的Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值 -->
-		<property name="mapperLocations" value="classpath*:com/dayima/stat/dao/mapper/*Mapper.xml" />
+		<property name="mapperLocations" value="classpath*:com/dayima/**/*Mapper.xml" />
 		<!-- 自动配置别名 -->
-		<property name="typeAliasesPackage" value="com.dayima.stat.model" />
+		<property name="typeAliasesPackage" value="com.dayima.stat.model,com.dayima.datacut.model" />
 		<property name="plugins">
 		    <array>
 		      <bean class="com.github.pagehelper.PageHelper">
@@ -60,7 +60,7 @@ http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	</bean>
 	<!-- 采用自动扫描方式创建mapper bean(单个更新模式) -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.dayima.stat.dao" />
+		<property name="basePackage" value="com.dayima.stat.dao,com.dayima.datacut.dao" />
 		<!-- 指定需要使用的sqlSessionFactoryBeanName对应的bean名称 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 		<!-- 指定需要使用的sqlSessionTemplate对应的bean名称 -->

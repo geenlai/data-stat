@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Built-By: geenlai
+Build-Jdk: 1.8.0_77
+Class-Path: . ../conf/ ./asm-commons-2.2.3.jar . ../conf/ ./asm-tree-2
+ .2.3.jar . ../conf/ ./asm-2.2.3.jar . ../conf/ ./spring-context-3.1.2
+ .RELEASE.jar . ../conf/ ./spring-beans-3.1.2.RELEASE.jar . ../conf/ .
+ /spring-core-3.1.2.RELEASE.jar . ../conf/ ./commons-logging-1.1.1.jar
+  . ../conf/ ./spring-expression-3.1.2.RELEASE.jar . ../conf/ ./spring
+ -asm-3.1.2.RELEASE.jar . ../conf/ ./spring-context-support-3.1.2.RELE
+ ASE.jar . ../conf/ ./spring-aop-3.1.2.RELEASE.jar . ../conf/ ./aopall
+ iance-1.0.jar . ../conf/ ./javassist-3.18.1-GA.jar . ../conf/ ./netty
+ -3.2.5.Final.jar . ../conf/ ./commons-io-20030203.000550.jar . ../con
+ f/ ./aspectjweaver-1.6.8.jar . ../conf/ ./commons-lang3-3.3.2.jar . .
+ ./conf/ ./slf4j-api-1.7.7.jar . ../conf/ ./slf4j-log4j12-1.7.7.jar . 
+ ../conf/ ./log4j-1.2.17.jar . ../conf/ ./log4j-api-2.0-rc1.jar . ../c
+ onf/ ./mysql-connector-java-5.1.30.jar . ../conf/ ./mybatis-3.2.2.jar
+  . ../conf/ ./mybatis-spring-1.2.0.jar . ../conf/ ./jackson-xc-1.9.7.
+ jar . ../conf/ ./jackson-core-asl-1.9.7.jar . ../conf/ ./jackson-mapp
+ er-asl-1.9.7.jar . ../conf/ ./spymemcached-2.11.4.jar . ../conf/ ./qu
+ artz-2.2.1.jar . ../conf/ ./c3p0-0.9.1.1.jar . ../conf/ ./quartz-jobs
+ -2.2.1.jar . ../conf/ ./druid-1.0.10.jar . ../conf/ ./pagehelper-3.4.
+ 2.jar . ../conf/ ./javax.servlet-api-3.1.0.jar . ../conf/ ./poi-3.9.j
+ ar . ../conf/ ./commons-codec-1.5.jar . ../conf/ ./spring-oxm-3.1.2.R
+ ELEASE.jar . ../conf/ ./commons-lang-2.5.jar . ../conf/ ./spring-orm-
+ 3.1.2.RELEASE.jar . ../conf/ ./spring-jdbc-3.1.2.RELEASE.jar . ../con
+ f/ ./spring-tx-3.1.2.RELEASE.jar
+Main-Class: com.dayima.stat.run.Main
+Created-By: Maven Integration for Eclipse
+

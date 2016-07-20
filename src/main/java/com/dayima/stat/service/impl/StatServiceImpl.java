@@ -17,14 +17,20 @@ public class StatServiceImpl implements StatService {
 	private StatMapper statMapper;
 	
 	@Override
-	public List<Map<String, Object>> getTm(String date) throws Exception {
-		List<Map<String, Object>> result = statMapper.getTm(date);
+	public List<Map<String, Object>> getTm(String date, byte orderType) throws Exception {
+		List<Map<String, Object>> result = statMapper.getTm(date, orderType);
 		return result;
 	}
 	
 	@Override
 	public List<Map<String, Object>> getMis(String date) throws Exception {
 		List<Map<String, Object>> result = statMapper.getMis(date);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> getFlashSale(String date, byte orderType) throws Exception {
+		List<Map<String, Object>> result = statMapper.getTm(date, orderType);
 		return result;
 	}
 

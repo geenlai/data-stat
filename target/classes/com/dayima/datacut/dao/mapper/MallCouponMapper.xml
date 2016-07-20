@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dayima.datacut.dao.MallCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.dayima.datacut.model.MallCoupon" >
+    <id column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="batch_id" property="batchId" jdbcType="INTEGER" />
+    <result column="coupon_code" property="couponCode" jdbcType="VARCHAR" />
+    <result column="coupon_type" property="couponType" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="exch_total_count" property="exchTotalCount" jdbcType="INTEGER" />
+    <result column="left_num" property="leftNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="modify_time" property="modifyTime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coupon_id, batch_id, coupon_code, coupon_type, status, exch_total_count, left_num, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mall_coupon
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mall_coupon
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteAll" parameterType="java.lang.Integer" >
+    delete from mall_coupon
+  </delete>
+  <insert id="insert" parameterType="com.dayima.datacut.model.MallCoupon" >
+    insert into mall_coupon (coupon_id, batch_id, coupon_code, 
+      coupon_type, status, exch_total_count, 
+      left_num, create_time, modify_time
+      )
+    values (#{couponId,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{couponCode,jdbcType=VARCHAR}, 
+      #{couponType,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{exchTotalCount,jdbcType=INTEGER}, 
+      #{leftNum,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{modifyTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertBatch" parameterType="list" >
+    insert into mall_coupon (coupon_id, batch_id, coupon_code, 
+      coupon_type, status, exch_total_count, 
+      left_num, create_time, modify_time
+      )
+    values 
+    <foreach collection="mallCouponList" item="mallCoupon" separator=",">
+    (#{mallCoupon.couponId,jdbcType=INTEGER}, #{mallCoupon.batchId,jdbcType=INTEGER}, #{mallCoupon.couponCode,jdbcType=VARCHAR}, 
+      #{mallCoupon.couponType,jdbcType=TINYINT}, #{mallCoupon.status,jdbcType=TINYINT}, #{mallCoupon.exchTotalCount,jdbcType=INTEGER}, 
+      #{mallCoupon.leftNum,jdbcType=INTEGER}, #{mallCoupon.createTime,jdbcType=BIGINT}, #{mallCoupon.modifyTime,jdbcType=BIGINT}
+      )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.dayima.datacut.model.MallCoupon" >
+    insert into mall_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="batchId != null" >
+        batch_id,
+      </if>
+      <if test="couponCode != null" >
+        coupon_code,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="exchTotalCount != null" >
+        exch_total_count,
+      </if>
+      <if test="leftNum != null" >
+        left_num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="couponId != null" >
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="couponCode != null" >
+        #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="exchTotalCount != null" >
+        #{exchTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="leftNum != null" >
+        #{leftNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dayima.datacut.model.MallCoupon" >
+    update mall_coupon
+    <set >
+      <if test="batchId != null" >
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="couponCode != null" >
+        coupon_code = #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="exchTotalCount != null" >
+        exch_total_count = #{exchTotalCount,jdbcType=INTEGER},
+      </if>
+      <if test="leftNum != null" >
+        left_num = #{leftNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dayima.datacut.model.MallCoupon" >
+    update mall_coupon
+    set batch_id = #{batchId,jdbcType=INTEGER},
+      coupon_code = #{couponCode,jdbcType=VARCHAR},
+      coupon_type = #{couponType,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      exch_total_count = #{exchTotalCount,jdbcType=INTEGER},
+      left_num = #{leftNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      modify_time = #{modifyTime,jdbcType=BIGINT}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </update>
+</mapper>

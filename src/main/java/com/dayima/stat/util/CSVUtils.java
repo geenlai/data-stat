@@ -28,7 +28,7 @@ public class CSVUtils {
         BufferedWriter bw=null;
         try {
             out = new FileOutputStream(file);
-            osw = new OutputStreamWriter(out, "UTF-8");
+            osw = new OutputStreamWriter(out, "GBK");
             bw = new BufferedWriter(osw, 1024);
             String header = "date,goodsId,productName,goodsPrice,count,midCount,categoryName\r\n";
             bw.append(header);
@@ -95,7 +95,7 @@ public class CSVUtils {
         BufferedWriter bw=null;
         try {
             out = new FileOutputStream(file);
-            osw = new OutputStreamWriter(out, "UTF-8");
+            osw = new OutputStreamWriter(out, "GBK");
             bw = new BufferedWriter(osw, 1024);
             String header = "date,goodsId,productName,goodsPrice,missPeriod,count,midCount,categoryName\r\n";
             bw.append(header);

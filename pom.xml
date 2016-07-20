@@ -241,6 +241,7 @@
 						<exclude>**/*application.properties</exclude>
 						<exclude>**/*context.xml</exclude>
 						<exclude>**/*log4j.properties</exclude>
+						<exclude>**/*spring-sheduler.xml</exclude>
 					</excludes>
 				</configuration>
 				<executions>
