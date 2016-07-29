@@ -14,7 +14,7 @@ public class Main {
 			context.start();
 			CouponDataCutService couponDataCutService = (CouponDataCutService) context.getBean("couponDataCutService");
 			couponDataCutService.doCut();
-			System.out.println("修改1");
+			System.out.println("修改11");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
