@@ -23,7 +23,6 @@ public class Main {
 			System.out.println("11");
 			System.out.println("22");
 			System.out.println("33");
-			System.out.println("44");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
