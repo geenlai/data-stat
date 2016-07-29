@@ -16,6 +16,7 @@ public class Main {
 			couponDataCutService.doCut();
 			System.out.println("修改1");
 			System.out.println("修改33");
+			System.out.println("修改44");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
